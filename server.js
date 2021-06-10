@@ -18,8 +18,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
-// Server routes
-app.use(require('./controller/routes.js'));
+
+// Routes
+// main route
+// app.get('/', async (req, res) => {
+//   // res.render('../public/index.html');
+//   res.sendFile('/public/index.html');
+// });
+
+// exercise route
+app.get('/exercise', async (req, res) => {
+  // res.render('../public/index.html');
+  res.sendFile(__dirname + '/public/exercise.html');
+});
+
+// stats route
+app.get('/stats', async (req, res) => {
+  // res.render('../public/index.html');
+  res.sendFile(__dirname + '/public/stats.html');
+});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb", { useNewUrlParser: true });
 
